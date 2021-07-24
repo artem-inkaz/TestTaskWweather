@@ -10,7 +10,7 @@ data class OpenWeatherMapResponse(
     @SerializedName("wind")
     val wind: Wind,
     @SerializedName("sys")
-    val sys: Wind,
+    val sys: Sys,
     @SerializedName("timezone")
     val timezone: Long,
     @SerializedName("name")
