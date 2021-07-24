@@ -12,6 +12,7 @@ object RetrofitModule {
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
 
+
     val retrofit: Retrofit = Retrofit.Builder()
         .client(client)
         .baseUrl(ui.smartpro.testtaskwweather.BuildConfig.BASE_URL)

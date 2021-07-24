@@ -11,7 +11,6 @@ import ui.smartpro.testtaskwweather.responce.OpenWeatherMapResponse
     ): WeatherModel =
             withContext(Dispatchers.Default) {
 
-
                     WeatherModel(
                             name = openWeatherMapResponse.name,
                             temperature = openWeatherMapResponse.main.getTempString(),
@@ -21,5 +20,4 @@ import ui.smartpro.testtaskwweather.responce.OpenWeatherMapResponse
                             sunrise = openWeatherMapResponse.sys.getSunriseString(),
                             sunset = openWeatherMapResponse.sys.getSunsetString(),
                     )
-
             }

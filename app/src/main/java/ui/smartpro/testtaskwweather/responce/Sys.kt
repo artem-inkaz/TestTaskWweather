@@ -18,15 +18,15 @@ data class Sys(
     @SuppressLint("SimpleDateFormat")
     fun getSunriseString(): String {
         val date = SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Date (sunrise*1000));
-        return date
+        val dateHour = SimpleDateFormat("HH").format(Date (sunset*1000));
+        return if (dateHour.toInt() > 13) date + " PM UTC" else date + " AM UTC"
     }
     @SuppressLint("SimpleDateFormat")
     fun getSunsetString(): String {
         val date = SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Date (sunset*1000));
-        return date
+        val dateHour = SimpleDateFormat("HH").format(Date (sunset*1000));
+        return if (dateHour.toInt() > 13) date + " PM UTC" else date + " AM UTC"
     }
-
-
 }
 
 //	String date = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date (unix время*1000));

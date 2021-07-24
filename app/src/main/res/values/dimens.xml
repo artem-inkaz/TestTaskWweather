@@ -16,5 +16,5 @@
     <dimen name="dimen_btn_width">126dp</dimen>
     <dimen name="dimen_btn_height">40dp</dimen>
     <dimen name="dimen_edttext_height">45dp</dimen>
-    <item name="dimen_edttext_width" type="dimen" format="float">106.87dp</item>
+    <dimen name="dimen_edttext_width">107dp</dimen>
 </resources>

@@ -16,11 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.util.List;
-
 import ui.smartpro.testtaskwweather.R;
 import ui.smartpro.testtaskwweather.api.State;
-import ui.smartpro.testtaskwweather.model.WeatherModel;
 
 public class FragmentJava extends Fragment {
 
@@ -31,7 +28,6 @@ public class FragmentJava extends Fragment {
     private String nameLocation;
 
     private State stateProgress;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

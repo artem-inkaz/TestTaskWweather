@@ -19,5 +19,4 @@ data class Main(
     fun getHumidityString(): String {
         return humidity.toString() + " %"
     }
-
 }
