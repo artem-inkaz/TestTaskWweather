@@ -13,10 +13,13 @@ object RetrofitModule {
         .build()
 
 
-    val retrofit: Retrofit = Retrofit.Builder()
-        .client(client)
-        .baseUrl(ui.smartpro.testtaskwweather.BuildConfig.BASE_URL)
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+//    val apiClient: OpenWeatherApi by lazy {
+        val retrofit: Retrofit = Retrofit.Builder()
+            .client(client)
+            .baseUrl(ui.smartpro.testtaskwweather.BuildConfig.BASE_URL)
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+//        return@lazy retrofit.create(OpenWeatherApi::class.java)
+//    }
 }
