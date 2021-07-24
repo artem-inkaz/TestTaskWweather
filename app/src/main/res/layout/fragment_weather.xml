@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_header_height"
+        android:background="#545454"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_margin_start_header"
+            android:text="@string/search_by_zip_code"
+            android:textColor="#C5C5C5"
+            android:textSize="@dimen/dimen_text_header"
+            android:textStyle="bold"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_margin_start_header"
+            android:layout_marginTop="@dimen/dimen_top_header"
+            android:text="@string/zip_code"
+            android:gravity="left"
+            android:textColor="#C5C5C5"
+            android:textSize="@dimen/dimen_text_header"
+            android:textStyle="bold"
+            tools:ignore="RtlHardcoded,SmallSp" />
+
+        <EditText
+            android:id="@+id/zipCodeET"
+            android:layout_width="@dimen/dimen_edttext_width"
+            android:layout_height="@dimen/dimen_edttext_height"
+            android:textSize="@dimen/dimen_edit_text"
+            android:textAlignment="inherit"
+            android:textColor="#D7D7D7"
+            android:layout_marginStart="@dimen/dimen_margin_start_header"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="@dimen/dimen_margin_start_header"/>
+
+        <Button
+            android:id="@+id/getweatherBtn"
+            android:layout_width="@dimen/dimen_btn_width"
+            android:layout_height="@dimen/dimen_btn_height"
+            android:layout_gravity="right|bottom"
+            android:layout_marginEnd="@dimen/dimen_margin_end_header"
+            android:layout_marginBottom="@dimen/dimen_header_bottom"
+            android:backgroundTint="#D6D7D7"
+            android:text="@string/get_weather"
+            android:textColor="#454444"
+            android:textSize="@dimen/dimen_text_button"
+            tools:ignore="RtlCompat,RtlHardcoded,SmallSp" />
+
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/locationTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_field"
+        android:layout_marginStart="@dimen/dimen_margin_field"
+        android:text="@string/location"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_text_title"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintVertical_bias="0.027"/>
+
+    <TextView
+        android:id="@+id/locationField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_margin_start_field"
+        android:layout_marginTop="@dimen/dimen_margin_top_field"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_text_size_field"
+        tools:text="@string/text_locationField"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locationTitle"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <TextView
+        android:id="@+id/temperatureTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_field"
+        android:layout_marginStart="@dimen/dimen_margin_field"
+        android:text="@string/temperature"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_text_title"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locationField"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <TextView
+        android:id="@+id/temperatureField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_margin_start_field"
+        android:layout_marginTop="@dimen/dimen_margin_top_field"
+        tools:text="@string/temp_text"
+        android:textSize="@dimen/dimen_text_size_field"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/temperatureTitle"
+        app:layout_constraintVertical_bias="0.136" />
+    <TextView
+        android:id="@+id/windTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_field"
+        android:layout_marginStart="@dimen/dimen_margin_field"
+        android:text="@string/wind_speed"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_text_title"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/temperatureField"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <TextView
+        android:id="@+id/windField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_margin_start_field"
+        android:layout_marginTop="@dimen/dimen_margin_top_field"
+        tools:text="@string/text_windField"
+        android:textSize="@dimen/dimen_text_size_field"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/windTitle"
+        app:layout_constraintVertical_bias="0.136" />
+    <TextView
+        android:id="@+id/humidityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_field"
+        android:layout_marginStart="@dimen/dimen_margin_field"
+        android:text="@string/wind_speed"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_text_title"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/windField"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <TextView
+        android:id="@+id/humidityField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_margin_start_field"
+        android:layout_marginTop="@dimen/dimen_margin_top_field"
+        tools:text="@string/text_humidityField"
+        android:textSize="@dimen/dimen_text_size_field"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/humidityTitle"
+        app:layout_constraintVertical_bias="0.136" />
+    <TextView
+        android:id="@+id/visibilityTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_field"
+        android:layout_marginStart="@dimen/dimen_margin_field"
+        android:text="@string/visibility"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_text_title"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/humidityField"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <TextView
+        android:id="@+id/visibilityField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_margin_start_field"
+        android:layout_marginTop="@dimen/dimen_margin_top_field"
+        tools:text="@string/clear"
+        android:textSize="@dimen/dimen_text_size_field"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/visibilityTitle"
+        app:layout_constraintVertical_bias="0.136" />
+    <TextView
+        android:id="@+id/sunriseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_field"
+        android:layout_marginStart="@dimen/dimen_margin_field"
+        android:text="@string/time_of_sunrise"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_text_title"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/visibilityField"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <TextView
+        android:id="@+id/sunriseField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_margin_start_field"
+        android:layout_marginTop="@dimen/dimen_margin_top_field"
+        tools:text="@string/date_sunrise"
+        android:textSize="@dimen/dimen_text_size_field"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sunriseTitle"
+        app:layout_constraintVertical_bias="0.136" />
+    <TextView
+        android:id="@+id/sunsetTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_margin_field"
+        android:layout_marginStart="@dimen/dimen_margin_field"
+        android:text="@string/time_of_sunset"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_text_title"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sunriseField"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <TextView
+        android:id="@+id/sunsetField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_margin_start_field"
+        android:layout_marginTop="@dimen/dimen_margin_top_field"
+        tools:text="@string/date_sunset"
+        android:textSize="@dimen/dimen_text_size_field"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sunsetTitle"
+        app:layout_constraintVertical_bias="0.136" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

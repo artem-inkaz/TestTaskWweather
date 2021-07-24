@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_header_height">85dp</dimen>
+    <dimen name="dimen_text_header">10sp</dimen>
+    <dimen name="dimen_margin_start_header">10dp</dimen>
+    <dimen name="dimen_top_header">20sp</dimen>
+    <dimen name="dimen_margin_end_header">10dp</dimen>
+    <dimen name="dimen_header_bottom">1dp</dimen>
+    <dimen name="dimen_margin_field">16dp</dimen>
+    <dimen name="dimen_edit_text">20sp</dimen>
+    <dimen name="dimen_margin_start_field">25dp</dimen>
+    <dimen name="dimen_margin_top_field">1dp</dimen>
+    <dimen name="dimen_text_title">13sp</dimen>
+    <dimen name="dimen_text_size_field">18sp</dimen>
+    <dimen name="dimen_text_button">10sp</dimen>
+    <dimen name="dimen_btn_width">126dp</dimen>
+    <dimen name="dimen_btn_height">40dp</dimen>
+    <dimen name="dimen_edttext_height">45dp</dimen>
+    <item name="dimen_edttext_width" type="dimen" format="float">106.87dp</item>
+</resources>
