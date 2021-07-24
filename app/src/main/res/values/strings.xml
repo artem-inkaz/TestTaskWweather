@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestTaskWweather</string>
+    <string name="app_name">TestTaskWeather</string>
     <string name="search_by_zip_code">Search by Zip Code</string>
     <string name="zip_code">Zip Code</string>
     <string name="get_weather">GET WEATHER</string>
