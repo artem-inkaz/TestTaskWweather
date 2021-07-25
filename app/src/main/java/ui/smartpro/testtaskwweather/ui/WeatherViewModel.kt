@@ -1,17 +1,20 @@
 package ui.smartpro.testtaskwweather.ui
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import org.koin.java.KoinJavaComponent.inject
 import ui.smartpro.testtaskwweather.api.OpenWeatherApi
+import ui.smartpro.testtaskwweather.api.RetrofitModule
 import ui.smartpro.testtaskwweather.api.State
 import ui.smartpro.testtaskwweather.api.convertWeatherDtoToDomain
 import ui.smartpro.testtaskwweather.model.WeatherModel
 
-class WeatherViewModel(private val apiService: OpenWeatherApi) : ViewModel() {
+class WeatherViewModel(val apiService: OpenWeatherApi) : ViewModel() {
 
     private val _state = MutableLiveData<State>(State.Init())
     val state: LiveData<State> get() = _state
@@ -35,6 +38,7 @@ init {
         saveEnabled.setValue(!newName.isEmpty())
     }
 
+    @SuppressLint("LogNotTimber")
     fun updateData(zipCode: Long) {
 
         viewModelScope.launch {
@@ -53,8 +57,8 @@ init {
                 _state.value = State.Error(Throwable(message))
                 _stateBoolean.value = true
                 Log.e(
-                        ViewModel::class.java.simpleName,
-                        "Error grab data from openweathermap.org data ${e.message}"
+                    ViewModel::class.java.simpleName,
+                    "Error grab data from openweathermap.org data ${e.message}"
                 )
             }
         }
