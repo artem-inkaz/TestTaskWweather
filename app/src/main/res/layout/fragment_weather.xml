@@ -41,6 +41,8 @@
             android:layout_width="@dimen/dimen_edttext_width"
             android:layout_height="@dimen/dimen_edttext_height"
             android:textSize="@dimen/dimen_edit_text"
+            android:inputType="number"
+            android:maxLength="6"
             android:textAlignment="inherit"
             android:textColor="#D7D7D7"
             android:layout_marginStart="@dimen/dimen_margin_start_header"

@@ -16,6 +16,9 @@ class WeatherViewModel(private val apiService: OpenWeatherApi) : ViewModel() {
     private val _state = MutableLiveData<State>(State.Init())
     val state: LiveData<State> get() = _state
 
+    private var _stateBoolean = MutableLiveData<Boolean>()
+    val stateBoolean: LiveData<Boolean> get() = _stateBoolean
+
     private val _mutableLiveDataWeather = MutableLiveData<WeatherModel>()
     val weatherLive: LiveData<WeatherModel> get() = _mutableLiveDataWeather
 
@@ -39,15 +42,13 @@ class WeatherViewModel(private val apiService: OpenWeatherApi) : ViewModel() {
                 val weather = apiService.getWeatherSuspend(zipCode)
                 // get Weather domain data
                 val weatherData = convertWeatherDtoToDomain(weather)
-
-//                listWeather = weatherData
-
                 _mutableLiveDataWeather.value = weatherData
                 _state.value = State.Success(weatherData)
-
+                _stateBoolean.value = false
             } catch (e: Exception) {
                 val message = "Ошибка загрузки данных"
                 _state.value = State.Error(Throwable(message))
+                _stateBoolean.value = true
                 Log.e(
                         ViewModel::class.java.simpleName,
                         "Error grab data from openweathermap.org data ${e.message}"
