@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.snackbar.Snackbar;
 
 import ui.smartpro.testtaskwweather.R;
+import ui.smartpro.testtaskwweather.api.State;
 import ui.smartpro.testtaskwweather.model.WeatherModel;
 
 public class FragmentJava extends Fragment {
@@ -28,6 +29,7 @@ public class FragmentJava extends Fragment {
     private Long zipCodeInput;
     private String zipCodeInputLength;
     private Integer zipCodeInputSize;
+    private Boolean flag;
 
     Button getweatherBtn;
     EditText zipCode;
@@ -60,7 +62,7 @@ public class FragmentJava extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        flag =false;
         getweatherBtn = view.findViewById(R.id.getweatherBtn);
         zipCode = view.findViewById(R.id.zipCodeET);
         locationField = view.findViewById(R.id.locationField);
@@ -93,10 +95,12 @@ public class FragmentJava extends Fragment {
 
             @Override
             public void onClick(View v) {
-                if (zipCodeInputSize >=5 && zipCodeInputSize <=6) {
+                if (!String.valueOf(zipCode.getText()).equals("")) {
+                if (zipCodeInputSize >= 5 && zipCodeInputSize <= 6) {
                     weatherViewModel.updateData(zipCodeInput);
                     weatherViewModel.getWeatherLive()
                             .observe(getViewLifecycleOwner(), weatherModels -> {
+                                flag = false;
                                 locationField.setText(weatherModels.getName());
                                 temperatureField.setText(weatherModels.getTemperature());
                                 windField.setText(weatherModels.getWind());
@@ -108,12 +112,18 @@ public class FragmentJava extends Fragment {
 
                     weatherViewModel.getStateBoolean()
                             .observe(getViewLifecycleOwner(), state -> {
-                       if (state==true) { SnackbarShow(v,"Данных нет возможно Вы ввели неверный код или Проверьте наличие интернета!"); }
-                                    });
-
+                                if (state && flag == true) {
+                                    flag = true;
+                                    SnackbarShow(v, "Данных нет возможно Вы ввели неверный код или Проверьте наличие интернета!");
+                                }
+                            });
                 } else {
-                    SnackbarShow(v,"Zip Code должен быть либо 5-ти знаяным или 6-ти значным числом!");
+                    SnackbarShow(v, "Zip Code должен быть либо 5-ти знаяным или 6-ти значным числом!");
                 }
+            } else {
+                    SnackbarShow(v, "Введите Zip Code! ");
+                }
+
             }
         });
 
@@ -131,6 +141,13 @@ public class FragmentJava extends Fragment {
         super.onStart();
         onUpdate(viewLaunch);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        viewLaunch = null;
+    }
+
 
     private void  onUpdate(View v) {
         if (!String.valueOf(zipCode.getText()).equals("")) {

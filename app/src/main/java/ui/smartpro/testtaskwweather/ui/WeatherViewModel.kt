@@ -16,7 +16,7 @@ class WeatherViewModel(private val apiService: OpenWeatherApi) : ViewModel() {
     private val _state = MutableLiveData<State>(State.Init())
     val state: LiveData<State> get() = _state
 
-    private var _stateBoolean = MutableLiveData<Boolean>()
+    private var _stateBoolean = MutableLiveData<Boolean>(false)
     val stateBoolean: LiveData<Boolean> get() = _stateBoolean
 
     private val _mutableLiveDataWeather = MutableLiveData<WeatherModel>()
@@ -26,7 +26,9 @@ class WeatherViewModel(private val apiService: OpenWeatherApi) : ViewModel() {
     fun saveEnabled(): LiveData<Boolean>? {
         return saveEnabled
     }
-
+init {
+    _stateBoolean.value = false;
+}
 //    var listWeather = listOf<WeatherModel>()
 
     fun validateInput(newName: String) {
@@ -37,14 +39,15 @@ class WeatherViewModel(private val apiService: OpenWeatherApi) : ViewModel() {
 
         viewModelScope.launch {
             try {
+//                _stateBoolean.value = true;
                 _state.value = State.Loading(null)
                 // get data Weather
                 val weather = apiService.getWeatherSuspend(zipCode)
                 // get Weather domain data
                 val weatherData = convertWeatherDtoToDomain(weather)
                 _mutableLiveDataWeather.value = weatherData
-                _state.value = State.Success(weatherData)
                 _stateBoolean.value = false
+                _state.value = State.Success(weatherData)
             } catch (e: Exception) {
                 val message = "Ошибка загрузки данных"
                 _state.value = State.Error(Throwable(message))
