@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import ui.smartpro.testtaskwweather.BuildConfig
 
 object RetrofitModule {
     private val client = OkHttpClient().newBuilder()
@@ -13,13 +14,13 @@ object RetrofitModule {
         .build()
 
 
-//    val apiClient: OpenWeatherApi by lazy {
+    val apiClient: OpenWeatherApi by lazy {
         val retrofit: Retrofit = Retrofit.Builder()
             .client(client)
-            .baseUrl(ui.smartpro.testtaskwweather.BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-//        return@lazy retrofit.create(OpenWeatherApi::class.java)
-//    }
+        return@lazy retrofit.create(OpenWeatherApi::class.java)
+    }
 }

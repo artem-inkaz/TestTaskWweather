@@ -2,6 +2,7 @@ package ui.smartpro.testtaskwweather.api
 
 import okhttp3.Interceptor
 import okhttp3.Response
+import timber.log.Timber
 import ui.smartpro.testtaskwweather.BuildConfig
 
 private const val API_KEY_HEADER = "x-api-key"
@@ -15,7 +16,7 @@ class OpenWeatherApiHeaderInterceptor : Interceptor {
             .url(originalHttpUrl)
             .addHeader(API_KEY_HEADER, BuildConfig.API_KEY)
             .build()
-
+        Timber.d(request.toString())
         return chain.proceed(request)
     }
 }

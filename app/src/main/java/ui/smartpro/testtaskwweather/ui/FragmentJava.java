@@ -9,22 +9,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.google.android.material.snackbar.Snackbar;
-
+import org.apache.commons.lang3.StringUtils;
+import java.util.Objects;
+import kotlin.Lazy;
 import ui.smartpro.testtaskwweather.R;
-import ui.smartpro.testtaskwweather.api.State;
-import ui.smartpro.testtaskwweather.model.WeatherModel;
+import static org.koin.java.KoinJavaComponent.inject;
 
 public class FragmentJava extends Fragment {
 
-    private WeatherViewModel weatherViewModel;
+    private final Lazy<WeatherViewModel> weatherViewModel = inject(WeatherViewModel.class);
 
     private Long zipCodeInput;
     private String zipCodeInputLength;
@@ -46,9 +44,6 @@ public class FragmentJava extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        weatherViewModel =
-                new ViewModelProvider(this, new WeatherViewModelFactory()).get(WeatherViewModel.class);
     }
 
     @Nullable
@@ -82,11 +77,12 @@ public class FragmentJava extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!String.valueOf(zipCode.getText()).equals("")) {
-                    zipCodeInput = Long.valueOf(String.valueOf(s)).longValue();
+                if (StringUtils.isNotBlank(zipCode.getText())) {
+//                if (!String.valueOf(zipCode.getText()).equals("")) {
+                    zipCodeInput = Long.valueOf(String.valueOf(s));
                     zipCodeInputLength = String.valueOf(s);
                     zipCodeInputSize = zipCodeInputLength.length();
-                    weatherViewModel.validateInput(s.toString());
+                     weatherViewModel.getValue().validateInput(s.toString());
                 }
             }
         });
@@ -95,10 +91,12 @@ public class FragmentJava extends Fragment {
 
             @Override
             public void onClick(View v) {
-                if (!String.valueOf(zipCode.getText()).equals("")) {
+//                String.valueOf(zipCode.getText()).isEmpty()
+//                if (!String.valueOf(zipCode.getText()).equals("")) {
+                if (StringUtils.isNotBlank(zipCode.getText())) {
                 if (zipCodeInputSize >= 5 && zipCodeInputSize <= 6) {
-                    weatherViewModel.updateData(zipCodeInput);
-                    weatherViewModel.getWeatherLive()
+                    weatherViewModel.getValue().updateData(zipCodeInput);
+                    weatherViewModel.getValue().getWeatherLive()
                             .observe(getViewLifecycleOwner(), weatherModels -> {
                                 flag = false;
                                 locationField.setText(weatherModels.getName());
@@ -110,7 +108,7 @@ public class FragmentJava extends Fragment {
                                 sunsetField.setText(weatherModels.getSunset());
                             });
 
-                    weatherViewModel.getStateBoolean()
+                    weatherViewModel.getValue().getStateBoolean()
                             .observe(getViewLifecycleOwner(), state -> {
                                 if (state && flag == true) {
                                     flag = true;
@@ -127,10 +125,9 @@ public class FragmentJava extends Fragment {
             }
         });
 
-        weatherViewModel.saveEnabled().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        Objects.requireNonNull(weatherViewModel.getValue().saveEnabled()).observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-//                buttonUpdate.setEnabled(aBoolean);
                 zipCode.setEnabled(true);
             }
         });
@@ -150,10 +147,11 @@ public class FragmentJava extends Fragment {
 
 
     private void  onUpdate(View v) {
-        if (!String.valueOf(zipCode.getText()).equals("")) {
+        if (StringUtils.isNotBlank(zipCode.getText())) {
+//        if (!String.valueOf(zipCode.getText()).equals("")) {
             if (zipCodeInputSize >= 5 && zipCodeInputSize <= 6) {
-                weatherViewModel.updateData(zipCodeInput);
-                weatherViewModel.getWeatherLive()
+                weatherViewModel.getValue().updateData(zipCodeInput);
+                weatherViewModel.getValue().getWeatherLive()
                         .observe(getViewLifecycleOwner(), weatherModels -> {
                             locationField.setText(weatherModels.getName());
                             temperatureField.setText(weatherModels.getTemperature());
@@ -164,7 +162,7 @@ public class FragmentJava extends Fragment {
                             sunsetField.setText(weatherModels.getSunset());
                         });
 
-                weatherViewModel.getStateBoolean()
+                weatherViewModel.getValue().getStateBoolean()
                         .observe(getViewLifecycleOwner(), state -> {
                             if (state) {
                                 SnackbarShow(v, "Данных нет возможно Вы ввели неверный код или Проверьте наличие интернета!");
