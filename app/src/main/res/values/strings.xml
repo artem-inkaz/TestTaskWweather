@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">TestTaskWweather</string>
+    <string name="app_name">TestTaskWeather</string>
+    <string name="search_by_zip_code">Search by Zip Code</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="get_weather">GET WEATHER</string>
+    <string name="location">Location</string>
+    <string name="temperature">Temperature</string>
+    <string name="wind_speed">Wind Speed</string>
+    <string name="visibility">Visibility</string>
+    <string name="clear">Clear</string>
+    <string name="time_of_sunrise">Time of Sunrise</string>
+    <string name="time_of_sunset">Time of Sunset</string>
+    <string name="date_sunset">01/01/01</string>
+    <string name="date_sunrise">01/01/01</string>
+    <string name="temp_text">55.58 F</string>
+    <string name="text_humidityField">10.29 mph</string>
+    <string name="text_windField">10.29 mph</string>
+    <string name="text_locationField">Mountain View</string>
 </resources>
