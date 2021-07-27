@@ -14,11 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import com.google.android.material.snackbar.Snackbar;
+import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 import kotlin.Lazy;
 import ui.smartpro.testtaskwweather.R;
 import static org.koin.java.KoinJavaComponent.inject;
-
 
 public class FragmentJava extends Fragment {
 
@@ -77,7 +77,8 @@ public class FragmentJava extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if (!String.valueOf(zipCode.getText()).equals("")) {
+                if (StringUtils.isNotBlank(zipCode.getText())) {
+//                if (!String.valueOf(zipCode.getText()).equals("")) {
                     zipCodeInput = Long.valueOf(String.valueOf(s));
                     zipCodeInputLength = String.valueOf(s);
                     zipCodeInputSize = zipCodeInputLength.length();
@@ -90,7 +91,9 @@ public class FragmentJava extends Fragment {
 
             @Override
             public void onClick(View v) {
-                if (!String.valueOf(zipCode.getText()).equals("")) {
+//                String.valueOf(zipCode.getText()).isEmpty()
+//                if (!String.valueOf(zipCode.getText()).equals("")) {
+                if (StringUtils.isNotBlank(zipCode.getText())) {
                 if (zipCodeInputSize >= 5 && zipCodeInputSize <= 6) {
                     weatherViewModel.getValue().updateData(zipCodeInput);
                     weatherViewModel.getValue().getWeatherLive()
@@ -144,7 +147,8 @@ public class FragmentJava extends Fragment {
 
 
     private void  onUpdate(View v) {
-        if (!String.valueOf(zipCode.getText()).equals("")) {
+        if (StringUtils.isNotBlank(zipCode.getText())) {
+//        if (!String.valueOf(zipCode.getText()).equals("")) {
             if (zipCodeInputSize >= 5 && zipCodeInputSize <= 6) {
                 weatherViewModel.getValue().updateData(zipCodeInput);
                 weatherViewModel.getValue().getWeatherLive()

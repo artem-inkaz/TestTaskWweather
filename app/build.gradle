@@ -86,4 +86,7 @@ dependencies {
 //    implementation "io.insert-koin:koin-android:$koin_version"
     // debugging
     implementation "com.jakewharton.timber:timber:$timberVersion"
+    //
+    implementation 'com.android.support:support-v4:+'
+    implementation  'org.apache.commons:commons-lang3:3.0'
 }
